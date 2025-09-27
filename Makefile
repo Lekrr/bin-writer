@@ -1,9 +1,9 @@
 CC=gcc
-CFLAGS=
+CFLAGS=-g
 
 TARGET=bin-writer
 
-SRCS=bin-writer.c
+SRCS=bin-writer.c buf.c
 OBJS=$(SRCS:.c=.o)
 
 all: lib$(TARGET).a

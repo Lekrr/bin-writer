@@ -11,5 +11,6 @@ enum BW_BYTE_ORDER
 extern enum BW_BYTE_ORDER bw_byte_order;
 
 int bin_write(const int fd, const char *format, ...);
+int bin_read(const int fd, const char *format, ...);
 
 #endif
