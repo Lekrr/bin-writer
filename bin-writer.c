@@ -37,13 +37,14 @@ int bin_write(const int fd, const char *format, ...) {
             switch (*(format + 1)) {
                 case 'd': {
                     int arg = va_arg(args, int);
-                    buf_push_int(&buf, arg);
+                    buf_push(&buf, &arg, sizeof(arg), 1);
                     format++;
                     break;
                 }
                 case 'u': {
                     unsigned int arg = va_arg(args, unsigned int);
-                    buf_push_uint(&buf, arg);
+                    buf_push(&buf, &arg, sizeof(arg), 1);
+                    format++;
                     break;
                 }
             } 

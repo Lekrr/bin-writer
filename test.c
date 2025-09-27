@@ -10,7 +10,7 @@ int main(void)
         fprintf(stderr, "Failed to open file");
     }
 
-    bin_write(fd, "%d", 1024);
+    bin_write(fd, "%d%d", 1024, 8);
 
     close(fd);
 

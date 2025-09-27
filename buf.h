@@ -10,12 +10,9 @@ typedef struct __BUF
 
 buf_t *new_buf(void);
 
-void buf_push(buf_t *buf, const char *data, const int size);
+void buf_push(buf_t *buf, const void *data, const int size, const int react_to_byte_order);
 
 void buf_push_char(buf_t *buf, const char c);
-
-void buf_push_int(buf_t *buf, const int num);
-void buf_push_uint(buf_t *buf, const unsigned int num);
 
 void free_buf(buf_t *buf);
 
