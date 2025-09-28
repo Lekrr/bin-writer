@@ -1,5 +1,7 @@
 #include "buf.h"
 
+#include "bin-writer.h"
+
 #include <stdlib.h>
 
 buf_t *new_buf(void) {
@@ -13,7 +15,9 @@ inline static void buf_size_check(buf_t *buf, int size) {
         buf->buf = calloc(buf->capacity, sizeof(*(buf->buf)));
     }
     if (buf->size + size > buf->capacity) {
-        buf->capacity *= 2;
+        do {
+            buf->capacity *= 2;
+        } while (buf->size + size > buf->capacity);
         buf->buf = realloc(buf->buf, sizeof(*(buf->buf)));
     }
 }
@@ -25,7 +29,7 @@ void buf_push_char(buf_t *buf, const char c) {
 
 void buf_push(buf_t *buf, const void *data, const int size, const int react_to_byte_order) {
     buf_size_check(buf, size);
-    if (react_to_byte_order == 0 /* temporary */ || react_to_byte_order == 1) {
+    if (react_to_byte_order == 0 /* temporary -> */ || react_to_byte_order == 1) {
         for (int i = 0; i < size; i++) {
             buf->buf[buf->size++] = *((char *) data + i);
         }
